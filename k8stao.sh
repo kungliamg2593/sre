@@ -6,7 +6,7 @@ ssh w1 'sudo apk add  kubeadm kubelet --update-cache --repository http://dl-3.al
 
 ssh w2 'sudo apk add  kubeadm kubelet --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted'
 
-sudo kubeadm init --service-cidr 10.98.0.0/24 --pod-network-cidr 10.244.0.0/16  --service-dns-domain=k8s.org --apiserver-advertise-address $IP
+sudo kubeadm init --service-cidr 10.98.0.0/24 --pod-network-cidr 10.244.0.0/16  --service-dns-domain=k8s.org --apiserver-advertise-address $IP --ignore-preflight-errors=all
 
 sudo rc-update add kubelet default
     #因 Kubelet 是 Daemon 不是 Pod, 需設定為系統自動啟動
