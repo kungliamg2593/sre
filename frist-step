@@ -1,0 +1,1 @@
+sudo swapoff -a;sudo rc-update add kubelet default;sudo containerd &
