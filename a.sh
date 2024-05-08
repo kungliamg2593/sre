@@ -14,8 +14,9 @@ chmod +x /etc/local.d/sharemetrics.start
 rc-update add local
 uuidgen |sudo tee /etc/machine-id
 rc-update add docker
-rc-update add kubelet
 rc-update add ntpd
+rc-update add kubelet default
+service kubelet restart
 /etc/init.d/ntpd start
 /etc/init.d/docker start
 ln -s /usr/libexec/cni/flannel-amd64 /usr/libexec/cni/flannel
