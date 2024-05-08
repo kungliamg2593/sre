@@ -1,8 +1,10 @@
 #!/bin/bash
-echo "br_netfilter" |sudo tee /etc/modules-load.d/k8s.conf
-echo "net.ipv6.conf.all.disable_ipv6 = 1" |sudo tee /etc/sysctl.conf
-echo "net.ipv4.ip_forward=1" |sudo tee /etc/sysctl.conf
 modprobe br_netfilter
+sysctl -w net.ipv4.ip_forward=1
+sysctl -w net.bridge.bridge-nf-call-iptables=1
+echo "br_netfilter" |tee /etc/modules-load.d/k8s.conf
+echo "net.ipv6.conf.all.disable_ipv6 = 1" |tee /etc/sysctl.conf
+echo "net.ipv4.ip_forward=1" |tee /etc/sysctl.conf
 cat /etc/fstab | grep -v swap |sudo tee temp.fstab
 cat temp.fstab |sudo tee /etc/fstab
 rm temp.fstab
