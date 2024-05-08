@@ -27,11 +27,23 @@ echo "net.bridge.bridge-nf-call-iptables=1" |tee -a /etc/sysctl.conf
 sysctl net.bridge.bridge-nf-call-iptables=1
 rc-update add crio default
 echo '
+[crio.runtime]
+
+# Overide defaults to not use systemd cgroups.
+conmon_cgroup = "pod"
+cgroup_manager = "cgroupfs"
+
+default_runtime = "crun"
+
+[crio.runtime.runtimes.crun]
+runtime_type = "oci"
+runtime_root = "/run/crun"
+
 [crio.network]
 network_dir = "/etc/cni/net.d/"
 plugin_dir = "/opt/cni/bin"
-' >> /etc/crio/crio.conf
+' |tee /etc/crio/crio.conf
 echo 'runtime-endpoint: unix:///var/run/crio/crio.sock
 image-endpoint: unix:///var/run/crio/crio.sock
 timeout: 2
-' > /etc/crictl.yaml
+' |tee /etc/crictl.yaml
