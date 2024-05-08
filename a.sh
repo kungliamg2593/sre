@@ -30,7 +30,7 @@ echo '
 [crio.network]
 network_dir = "/etc/cni/net.d/"
 plugin_dir = "/opt/cni/bin"
-' | tee /etc/crio/crio.conf
+' >> /etc/crio/crio.conf
 echo 'runtime-endpoint: unix:///var/run/crio/crio.sock
 image-endpoint: unix:///var/run/crio/crio.sock
 timeout: 2
