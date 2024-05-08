@@ -22,3 +22,12 @@ ln -s /usr/libexec/cni/flannel-amd64 /usr/libexec/cni/flannel
 echo "net.bridge.bridge-nf-call-iptables=1" |sudo tee -a /etc/sysctl.conf
 sysctl net.bridge.bridge-nf-call-iptables=1
 rc-update add crio default
+echo '
+[crio.network]
+network_dir = "/etc/cni/net.d/"
+plugin_dir = "/opt/cni/bin"
+' | tee /etc/crio/crio.conf
+echo 'runtime-endpoint: unix:///var/run/crio/crio.sock
+image-endpoint: unix:///var/run/crio/crio.sock
+timeout: 2
+' > /etc/crictl.yaml
