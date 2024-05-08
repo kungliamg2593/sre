@@ -19,6 +19,7 @@ rc-update add docker
 rc-update add ntpd
 rc-update add kubelet default
 service kubelet restart
+service containerd restart
 /etc/init.d/ntpd start
 /etc/init.d/docker start
 ln -s /usr/libexec/cni/flannel-amd64 /usr/libexec/cni/flannel
