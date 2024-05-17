@@ -1,3 +1,3 @@
 kubectl get nodes
-kubectl create svc jktest
-kubectl get svc
+kubectl create namespace jktest
+kubectl get namespace
