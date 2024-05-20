@@ -1,3 +1,3 @@
 kubectl get nodes
-kubectl create namespace jktest
+kubectl delete namespace jktest
 kubectl get namespace
