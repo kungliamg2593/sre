@@ -1,1 +1,1 @@
-kubectl get namespace
+kubectl geet namespace
