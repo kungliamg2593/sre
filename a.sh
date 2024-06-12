@@ -1,4 +1,12 @@
 #!/bin/bash
+apk update; apk upgrade
+apk add nano
+nano /etc/apk/repositories
+http://dl-cdn.alpinelinux.org/alpine/edge/testing
+http://dl-cdn.alpinelinux.org/alpine/edge/community
+http://dl-cdn.alpinelinux.org/alpine/edge/main
+
+apk update && apk add tree unzip curl wget zip grep bash procps util-linux-misc dialog go udev sudo pciutils podman cni-plugin-flannel cni-plugins flannel flannel-contrib-cni kubectl kubelet kubeadm docker uuidgen nfs-utils cri-o cri-tools
 echo "root:root" | chpasswd
 echo 'PermitRootLogin yes' | tee -a /etc/ssh/ssh_config
 echo 'StrictHostKeyChecking no' | tee -a /etc/ssh/ssh_config
