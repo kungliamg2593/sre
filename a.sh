@@ -1,4 +1,7 @@
 #!/bin/bash
+echo "root:root" | chpasswd
+echo 'PermitRootLogin yes' | tee -a /etc/ssh/ssh_config
+echo 'StrictHostKeyChecking no' | tee -a /etc/ssh/ssh_config
 modprobe br_netfilter
 sysctl -w net.ipv4.ip_forward=1
 sysctl -w net.bridge.bridge-nf-call-iptables=1
